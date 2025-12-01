@@ -1,5 +1,6 @@
 package com.example.project.job;
 
+import com.example.project.company.Company;
 import org.springframework.boot.autoconfigure.batch.BatchProperties;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +25,7 @@ public class JobController {
     @PostMapping("/jobs")
     public ResponseEntity<String> createJob(@RequestBody Job job) {
         jobService.createJob(job);
+        Company c = job.getCompany();
         return new ResponseEntity<>("Job Added Successfully", HttpStatus.CREATED);
     }
 
